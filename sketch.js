@@ -6,6 +6,7 @@ let isSunny = false;
 let apiPrecp = false;
 let finalfdi = 0;
 let apiImg = null;
+let count = 0;
 
 function preload() {
 
@@ -14,11 +15,12 @@ function preload() {
 
 function setup() {
     loadJSON("http://api.apixu.com/v1/forecast.json?key=80dc2b2246004f62b5b60234181811&q=Boston&days=1", apiCallback);
-    finalfdi = CalcFDI(avgTemp, isSunny, apiPrecp);
-    console.log(finalfdi);
 }
 
 function draw() {
+    if(count > 120){
+        finalfdi = CalcFDI(avgTemp, apiPrecp, isSunny);
+    }
     createCanvas(500, 500);
     textAlign(CENTER);
     rectMode(CENTER);
@@ -32,6 +34,11 @@ function draw() {
     noFill()
     stroke(0);
     rect(width / 2, 160, 250, 110);
+
+    if(count > 120){
+        noLoop();
+    }
+    count++;
 
 
 }
@@ -66,6 +73,7 @@ function CalcFDI(temp_, preceptitation_, sunny_) {
     fditemp = calcTemp(this.temp);
 
     this.fdi += fditemp;
+    console.log(fditemp);
 
     if (this.temp < 32 && this.prec) {
         //snowing = bad!
