@@ -14,7 +14,7 @@ function preload() {
 }
 
 function setup() {
-    loadJSON("http://api.apixu.com/v1/forecast.json?key=80dc2b2246004f62b5b60234181811&q=Boston&days=1", apiCallback);
+    loadJSON("https://api.apixu.com/v1/forecast.json?key=80dc2b2246004f62b5b60234181811&q=Boston&days=1", apiCallback);
 }
 
 function draw() {
