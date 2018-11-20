@@ -1,5 +1,5 @@
 //perfect day = coldish, cloudy, not raining.
-//perfect temp 65
+//perfect temp 60
 //api key 80dc2b2246004f62b5b6023418181;
 let avgTemp = 0;
 let isSunny = false;
@@ -57,10 +57,10 @@ function apiCallback(data) {
 }
 
 function calcTemp(temp) {
-    if (temp > 65)
-        return map(temp, 65, 110, 0, 70);
+    if (temp > 60)
+        return map(temp, 60, 110, 0, 70);
     else {
-        return map(temp, -18, 65, 30, 0);
+        return map(temp, -18, 60, 30, 0);
     }
 }
 
