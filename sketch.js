@@ -86,7 +86,7 @@ function CalcFDI(temp_, preceptitation_, sunny_) {
 
     title.style('font-size', '50px');
     title.style('position', 'relative');
-    title.style('left', '39%');
+    title.style('left', '50%');
     title.style('bottom', '75%');
     title.style('color', '#8900ff');
     calcd = true;
