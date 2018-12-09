@@ -13,7 +13,7 @@ let loaded = false
 let calcd = false;
 
 function setup() {
-    //    createCanvas(windowWidth, windowHeight - 50);
+
     loadJSON("https://api.apixu.com/v1/forecast.json?key=80dc2b2246004f62b5b60234181811&q=Boston&days=1", apiCallback);
     started = true;
 }
@@ -24,30 +24,7 @@ function draw() {
     if (loaded && !calcd) {
         finalfdi = CalcFDI(avgTemp, apiPrecp, isSunny);
 
-
-
-        // textAlign(CENTER);
-        // rectMode(CENTER);
-        // background(255);
-        // textSize(32);
-        // fill(0);
-        // text("Fran Danger Index Calculator", width / 2, 50);
-        // text("Today's FDI is", width / 2, 150);
-        // fill(255, 0, 255);
-        // text(finalfdi, width / 2, 200);
-        // noFill()
-        // stroke(0);
-        // rect(width / 2, 160, 250, 110);
-        //
-        // if(count > 120){
-        //     noLoop();
-        // }
-        // count++;
-
     }
-    // createCanvas(500, 500);
-
-
 }
 
 function apiCallback(data) {
@@ -100,14 +77,13 @@ function CalcFDI(temp_, preceptitation_, sunny_) {
 
     let title = createDiv("Today's FDR is ")
     let div = createDiv(floor(this.fdi));
-    //div.style('text-align', 'center');
     div.style('font-size', '50px');
     div.style('position', 'relative');
     div.style('left', '49%');
     div.style('bottom', '50%');
     div.style('color', '#8900ff');
 
-//    title.style('text-align', 'center');
+
     title.style('font-size', '50px');
     title.style('position', 'relative');
     title.style('left', '39%');
