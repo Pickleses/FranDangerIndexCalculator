@@ -75,20 +75,11 @@ function CalcFDI(temp_, preceptitation_, sunny_) {
         console.log("added 30 + temp because of sunny");
     }
 
-    let title = createDiv("Today's FDR is ")
+    let title = createDiv("Today's FDR is ");
+    title.class('text1');
     let div = createDiv(floor(this.fdi));
-    div.style('font-size', '50px');
-    div.style('position', 'relative');
-    div.style('left', '49%');
-    div.style('bottom', '50%');
+    div.class('text2');
     div.style('color', '#8900ff');
-
-
-    title.style('font-size', '50px');
-    title.style('position', 'relative');
-    title.style('left', '50%');
-    title.style('bottom', '75%');
-    title.style('color', '#8900ff');
     calcd = true;
 }
 
