@@ -11,10 +11,12 @@ let animcount = 0;
 let started = false;
 let loaded = false
 let calcd = false;
+let retrograde = false;
 
 function setup() {
 
     loadJSON("https://api.apixu.com/v1/forecast.json?key=80dc2b2246004f62b5b60234181811&q=Boston&days=1", apiCallback);
+    loadJSON("https://mercuryretrogradeapi.com/", apiCallback1)
     started = true;
 }
 
@@ -22,13 +24,12 @@ function draw() {
 
     ShowLoading();
     if (loaded && !calcd) {
-        finalfdi = CalcFDI(avgTemp, apiPrecp, isSunny);
+        finalfdi = CalcFDI(avgTemp, apiPrecp, isSunny, retrograde);
 
     }
 }
 
 function apiCallback(data) {
-    //console.log(data.forecast.forecastday[0].day.condition.text);
     let cond = data.forecast.forecastday[0].day.condition.text;
     avgTemp = data.forecast.forecastday[0].day.avgtemp_f;
     let precep = data.forecast.forecastday[0].day.totalprecip_in;
@@ -39,6 +40,12 @@ function apiCallback(data) {
         apiPrecp = true;
     }
 }
+function apiCallback1(data){
+    if(data.is_retrograde){
+        retrograde = true;
+    }
+
+}
 
 function calcTemp(temp) {
     if (temp > 60)
@@ -48,11 +55,12 @@ function calcTemp(temp) {
     }
 }
 
-function CalcFDI(temp_, preceptitation_, sunny_) {
+function CalcFDI(temp_, preceptitation_, sunny_, retro_) {
     this.temp = temp_;
     this.prec = preceptitation_;
     this.sunny = sunny_;
     this.fdi = 0;
+    this.retro = retro_;
 
     fditemp = calcTemp(this.temp);
 
@@ -73,6 +81,10 @@ function CalcFDI(temp_, preceptitation_, sunny_) {
         let tempoffset = 30 + (this.temp / 2);
         this.fdi += tempoffset;
         console.log("added 30 + temp because of sunny");
+    }
+    if( this.retrograde){
+        console.log("added 5 because of mercury retrograde");
+        this.fdi += 5;
     }
 
     let title = createDiv("Today's FDR is ");
